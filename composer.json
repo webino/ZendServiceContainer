@@ -1,5 +1,5 @@
 {
-    "name": "zendframework/zend-servicemanager",
+    "name": "webino/zend-service-container",
     "description": "Factory-Driven Dependency Injection Container",
     "license": "BSD-3-Clause",
     "keywords": [
@@ -19,6 +19,9 @@
         "rss": "https://github.com/zendframework/zend-servicemanager/releases.atom",
         "slack": "https://zendframework-slack.herokuapp.com",
         "forum": "https://discourse.zendframework.com/c/questions/components"
+    },
+    "replace": {
+        "zendframework/zend-servicemanager": "self.version"
     },
     "require": {
         "php": "^7.1",
