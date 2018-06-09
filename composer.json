@@ -1,6 +1,6 @@
 {
-    "name": "zendframework/zend-servicemanager",
-    "description": " ",
+    "name": "webino/zend-service-container",
+    "description": "Factory-Driven Dependency Injection Container",
     "license": "BSD-3-Clause",
     "keywords": [
         "zf2",
@@ -11,6 +11,9 @@
         "psr-4": {
             "Zend\\ServiceManager\\": "src/"
         }
+    },
+    "replace": {
+      "zendframework/zend-servicemanager": "self.version"
     },
     "require": {
         "php": "^5.5 || ^7.0",
