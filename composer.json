@@ -20,6 +20,9 @@
         "slack": "https://zendframework-slack.herokuapp.com",
         "forum": "https://discourse.zendframework.com/c/questions/components"
     },
+    "replace": {
+        "zendframework/zend-servicemanager": "self.version"
+    },
     "require": {
         "php": "^5.6 || ^7.0",
         "container-interop/container-interop": "^1.2",
