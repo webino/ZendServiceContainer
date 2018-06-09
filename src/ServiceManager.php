@@ -410,23 +410,10 @@ class ServiceManager implements ServiceLocatorInterface
      * @param  string $name
      * @param  bool   $isShared
      * @return ServiceManager
-     * @throws Exception\ServiceNotFoundException
      */
     public function setShared($name, $isShared)
     {
         $cName = $this->canonicalizeName($name);
-
-        if (!isset($this->invokableClasses[$cName])
-            && !isset($this->factories[$cName])
-            && !$this->canCreateFromAbstractFactory($cName, $name)
-        ) {
-            throw new Exception\ServiceNotFoundException(sprintf(
-                '%s: A service by the name "%s" was not found and could not be marked as shared',
-                get_class($this) . '::' . __FUNCTION__,
-                $name
-            ));
-        }
-
         $this->shared[$cName] = (bool) $isShared;
         return $this;
     }
@@ -434,20 +421,10 @@ class ServiceManager implements ServiceLocatorInterface
     /**
      * @param  string $name
      * @return bool
-     * @throws Exception\ServiceNotFoundException
      */
     public function isShared($name)
     {
         $cName = $this->canonicalizeName($name);
-
-        if (!$this->has($name)) {
-            throw new Exception\ServiceNotFoundException(sprintf(
-                '%s: A service by the name "%s" was not found',
-                get_class($this) . '::' . __FUNCTION__,
-                $name
-            ));
-        }
-
         if (!isset($this->shared[$cName])) {
             return $this->shareByDefault();
         }
@@ -940,7 +917,7 @@ class ServiceManager implements ServiceLocatorInterface
             unset($circularDependencyResolver[$depKey]);
             throw new Exception\ServiceNotCreatedException(
                 sprintf('An exception was raised while creating "%s"; no instance returned', $rName),
-                (int)$e->getCode(),
+                $e->getCode(),
                 $e
             );
         }
