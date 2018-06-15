@@ -350,7 +350,7 @@ abstract class AbstractPluginManager extends ServiceManager implements ServiceLo
      */
     protected function createServiceViaCallback($callable, $cName, $rName)
     {
-        if (is_object($callable)) {
+        if (is_object($callable) || (is_string($callable) && is_callable($callable))) {
             $factory = $callable;
         } elseif (is_array($callable)) {
             // reset both rewinds and returns the value of the first array element
